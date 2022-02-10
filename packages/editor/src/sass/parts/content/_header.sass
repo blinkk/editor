@@ -1,0 +1,52 @@
+.le__part__content__header
+  align-items: center
+  background-color: var(--color-tertiary)
+  color: var(--color-on-tertiary)
+  cursor: default
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+
+.le__part__content__header__sections
+  display: flex
+  flex-flow: row
+
+.le__part__content__header__section
+  padding: $le-space-medium $le-space-medium calc(#{$le-space-medium} - #{$le-border-size-large})
+  border-bottom: $le-border-size-large solid transparent
+  font-size: $le-font-size-small
+  font-weight: var(--font-weight-bold)
+  text-transform: uppercase
+  transition: opacity $le-speed-xslow
+
+  &--disabled
+    opacity: $le-opacity-disabled
+
+  &:hover:not(.le__part__content__header__section--disabled)
+    border-bottom: $le-border-size-large solid var(--color-on-tertiary)
+
+  &--selected
+    border-bottom: $le-border-size-large solid var(--color-on-tertiary)
+
+.le__part__content__header__actions
+  align-items: center
+  display: flex
+  flex-flow: row
+  margin-right: $le-space-medium
+
+  .le__loading
+    margin-right: $le-space-medium
+
+.le__part__content__header__action
+  min-width: $le-space-xxlarge
+
+  &.le__button
+    +button-tertiary-invert
+
+.le__part__content__header__status
+  &--error
+    color: var(--color-extreme)
+    margin-right: $le-space-medium
+
+  .material-icons
+    font-size: $le-font-size-icon-large

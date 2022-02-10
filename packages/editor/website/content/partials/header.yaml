@@ -1,0 +1,9 @@
+partial: header
+logo:
+  doc: !pod.doc /content/pages/index.yaml
+  title: Editor.dev
+stable:
+  url: https://editor.dev
+nav:
+- !pod.doc /content/docs/index.yaml
+- !pod.doc /content/pages/example.yaml

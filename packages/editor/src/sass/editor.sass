@@ -1,0 +1,139 @@
+@import 'config'
+@import 'scheme'
+
+.le
+  // Uses tertiary background to provide the 'gap' color for panels.
+  background-color: var(--color-tertiary)
+  color: var(--color-on-tertiary)
+  display: grid
+  font-family: var(--font-family-default)
+  font-size: $le-font-size
+  grid-template-columns: 100%
+  line-height: $le-line-height
+  overflow: hidden
+
+  &--docked-menu
+    column-gap: $le-space-xxsmall
+    grid-template-columns: minmax(300px, 15%) 1fr
+
+  *
+    box-sizing: border-box
+
+  a
+    color: inherit
+    font-weight: var(--font-weight-bold)
+    text-decoration: dotted
+
+    &:hover
+      text-decoration: underline
+
+  p
+    line-height: $le-line-height-paragraph
+    margin: $le-space-medium 0
+
+  pre
+    margin: 0
+
+  h1
+    font-size: $le-font-size-xxlarge
+    font-weight: var(--font-weight-default)
+
+  h2
+    font-size: $le-font-size-xlarge
+    font-weight: var(--font-weight-bold)
+
+  h3
+    font-size: $le-font-size-xlarge
+    font-weight: var(--font-weight-heavy)
+
+  h4
+    font-size: $le-font-size-large
+    font-weight: var(--font-weight-bold)
+
+  h5
+    font-size: $le-font-size-large
+    font-weight: var(--font-weight-heavy)
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5
+    margin: $le-space-medium 0
+    line-height: $le-line-height
+
+  svg
+    path[fill="#000"],
+    path[fill="#000000"]
+      fill: currentColor
+
+  .material-icons
+    font-size: $le-font-size-icon
+    vertical-align: middle
+
+.le__panel
+  background: var(--color-background)
+  color: var(--color-on-background)
+
+.le__structure__content
+  display: flex
+  flex-flow: column
+
+.le__structure__content_header
+  flex-grow: 0
+  flex-shrink: 1
+
+.le__structure__content_panes
+  column-gap: $le-space-xxsmall
+  display: grid
+  flex-grow: 1
+  grid-template-columns: minmax(475px, 40%) 1fr
+
+.le__structure__content_only,
+.le__structure__preview_only
+  display: flex
+  flex-flow: column
+  flex-grow: 1
+
+a,
+[aria-role="link"],
+.le__clickable
+  cursor: pointer
+
+  .material-icons
+    padding: $le-space-xsmall
+
+.material-icons[aria-role="link"],
+.material-icons.le__clickable
+  padding: $le-space-xsmall
+
+@function encodecolor($string)
+  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1
+    $hex: str-slice(ie-hex-str($string), 4)
+    $string: unquote('#{$hex}')
+    @return '%23' + $string
+  @return $string
+
+@import './ui/actions'
+@import './ui/button'
+@import './ui/error'
+@import './ui/grid'
+@import './ui/hoverMenu'
+@import './ui/info'
+@import './ui/list'
+@import './ui/loading'
+@import './ui/modal'
+@import './ui/toast'
+@import './ui/tooltip'
+@import './ui/warning'
+
+@import './parts/content'
+@import './parts/dashboard'
+@import './parts/menu'
+@import './parts/modals'
+@import './parts/notifications'
+@import './parts/onboarding'
+@import './parts/overview'
+@import './parts/preview'
+
+@import './selective/selective'

@@ -1,0 +1,7 @@
+title: Editor.dev - GitHub Projects
+navTitle: GitHub
+description: Edit projects hosted on GitHub.
+$view: /views/editor.njk
+
+config:
+  service: gh

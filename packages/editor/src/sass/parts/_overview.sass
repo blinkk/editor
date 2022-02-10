@@ -1,0 +1,43 @@
+.le__part__overview
+  align-items: center
+  background: var(--color-primary)
+  color: var(--color-on-primary)
+  column-gap: $le-space-medium
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  padding: 0 $le-space-medium
+
+  a
+    color: var(--color-on-primary)
+
+.le__part__overview__title
+  flex-grow: 1
+  font-weight: var(--font-weight-bold)
+  padding: $le-space-medium 0
+
+.le__part__overview__workspace
+  font-size: $le-font-size-small
+  margin: $le-space-medium 0
+
+.le__part__overview__publish
+  button
+    min-width: $le-space-xxlarge
+
+.le__part__overview__icon
+  svg
+    height: $le-font-size-icon
+    max-width: $le-font-size-icon
+
+.le__part__breadcrumb
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+  span
+    &::after
+      content: ' / '
+
+    &:last-child
+      &::after
+        content: ''

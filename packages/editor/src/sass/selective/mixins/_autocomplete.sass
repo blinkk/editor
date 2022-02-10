@@ -1,0 +1,34 @@
+.selective__autocomplete
+  position: relative
+
+.selective__autocomplete__list
+  background: var(--color-tertiary)
+  box-shadow: $le-shadow-small
+  border: var(--color-border-dark) $le-border-size-medium solid
+  border-bottom-left-radius: $le-radius-medium
+  border-bottom-right-radius: $le-radius-medium
+  color: var(--color-on-tertiary)
+  left: 0
+  max-height: $le-space-xxxlarge
+  overflow-y: auto
+  position: absolute
+  right: 0
+  top: $le-border-size-large
+  z-index: 200
+
+.selective__autocomplete__list__item
+  padding: $le-space-small $le-space-medium
+
+  &:focus,
+  &:hover,
+  &[aria-selected=true]
+    background: var(--color-tertiary)
+    color: var(--color-on-tertiary)
+
+.selective__autocomplete__list__item__meta
+  font-size: $le-font-size-small
+  padding: $le-space-small $le-space-xsmall $le-space-xsmall $le-space-small
+
+.selective__autocomplete__list__status
+  font-size: $le-font-size-small
+  padding: $le-space-small $le-space-medium

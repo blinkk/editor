@@ -1,0 +1,8 @@
+{
+  "packages": {
+    "packages/connector": {},
+    "packages/editor": {},
+    "packages/selective-edit": {}
+  },
+  "plugins": ["node-workspace"]
+}

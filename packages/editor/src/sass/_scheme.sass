@@ -1,0 +1,129 @@
+@mixin perfersAndClass($scheme)
+  @media (prefers-color-scheme: $scheme)
+    @content
+
+  #{'.scheme-' + $scheme}
+    @content
+
+:root
+  --font-family-default: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"
+  --font-family-mono: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace
+  --font-weight-default: 400
+  --font-weight-heavy: 500
+  --font-weight-bold: 700
+
+  +perfersAndClass('light')
+    --color-background: #ffffff
+    --color-on-background: #121212
+
+    --color-primary: #00796b
+    --color-on-primary: #ffffff
+
+    --color-primary-light: #48a999
+    --color-on-primary-light: #ffffff
+
+    --color-secondary: #767676
+    --color-on-secondary: #ffffff
+
+    --color-tertiary: #eeeeee
+    --color-on-tertiary: #000000
+
+    --color-tertiary-dark: #aaaaaa
+    --color-on-tertiary-dark: #000000
+
+    --color-extreme: #C71F25
+    --color-on-extreme: #ffffff
+
+    --color-warning: #D78528
+    --color-on-warning: #000000
+
+    --color-info: #4F9CD1
+    --color-on-info: #000000
+
+    --color-highlight: #e1fc8d
+    --color-on-highlight: #000000
+
+    --color-oclude: rgba(0, 0, 0, .25)
+    --color-on-oclude: #ffffff
+
+    --color-border: #e5e5e5
+    --color-border-hover: #cbd4db
+    --color-border-dark: #bdbdbd
+    --color-border-dark-hover: #ac9e9e
+    --color-border-light: #f2f2f2
+    --color-border-light-hover: #e7d5d5
+
+    --color-background-grid: rgba(220, 220, 220, .3)
+
+    --color-shadow-xsmall-a: rgba(0,0,0,0.12)
+    --color-shadow-xsmall-b: rgba(0,0,0,0.24)
+
+    --color-shadow-small-a: rgba(0,0,0,0.12)
+    --color-shadow-small-b: rgba(0,0,0,0.24)
+
+    --color-shadow-medium-a: rgba(0,0,0,0.19)
+    --color-shadow-medium-b: rgba(0,0,0,0.23)
+
+    --color-shadow-large-a: rgba(0,0,0,0.25)
+    --color-shadow-large-b: rgba(0,0,0,0.22)
+
+    --color-shadow-xlarge-a: rgba(0,0,0,0.30)
+    --color-shadow-xlarge-b: rgba(0,0,0,0.22)
+
+  +perfersAndClass('dark')
+    --color-background: #121212
+    --color-on-background: #f2f2f2
+
+    --color-primary: #00796b
+    --color-on-primary: #ffffff
+
+    --color-primary-light: #48a999
+    --color-on-primary-light: #ffffff
+
+    --color-secondary: #9e9e9e
+    --color-on-secondary: #000000
+
+    --color-tertiary: #2C2C2C
+    --color-on-tertiary: #ffffff
+
+    --color-tertiary-dark: #555555
+    --color-on-tertiary-dark: #ffffff
+
+    --color-extreme: #cf6679
+    --color-on-extreme: #000000
+
+    --color-warning: #D78528
+    --color-on-warning: #000000
+
+    --color-info: #4F9CD1
+    --color-on-info: #000000
+
+    --color-highlight: #e1fc8d
+    --color-on-highlight: #000000
+
+    --color-oclude: rgba(0, 0, 0, .25)
+    --color-on-oclude: #ffffff
+
+    --color-border: #e5e5e5
+    --color-border-hover: #e0ebf3
+    --color-border-dark: #bdbdbd
+    --color-border-dark-hover: #cebebe
+    --color-border-light: #f2f2f2
+    --color-border-light-hover: #f8e6e6
+
+    --color-background-grid: rgba(50, 50, 50, .3)
+
+    --color-shadow-xsmall-a: rgba(0,0,0,0.17)
+    --color-shadow-xsmall-b: rgba(0,0,0,0.29)
+
+    --color-shadow-small-a: rgba(0,0,0,0.17)
+    --color-shadow-small-b: rgba(0,0,0,0.29)
+
+    --color-shadow-medium-a: rgba(0,0,0,0.24)
+    --color-shadow-medium-b: rgba(0,0,0,0.28)
+
+    --color-shadow-large-a: rgba(0,0,0,0.30)
+    --color-shadow-large-b: rgba(0,0,0,0.27)
+
+    --color-shadow-xlarge-a: rgba(0,0,0,0.25)
+    --color-shadow-xlarge-b: rgba(0,0,0,0.27)

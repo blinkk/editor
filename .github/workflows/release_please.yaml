@@ -1,0 +1,93 @@
+name: Release please
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  release-please:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: GoogleCloudPlatform/release-please-action@v2
+      id: release
+      name: Release please
+      with:
+        command: manifest
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release-type: node
+        default-branch: main
+
+    - uses: actions/checkout@v2
+      if: ${{ steps.release.outputs.releases_created }}
+
+    - uses: actions/setup-node@v2
+      if: ${{ steps.release.outputs.releases_created }}
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Build Packages
+      if: ${{ steps.release.outputs.releases_created }}
+      run: |
+        yarn install --frozen-lockfile
+        npx lerna bootstrap
+
+    # Release Please has already incremented versions and published tags, so we just
+    # need to publish all unpublished versions to NPM.
+    # See: https://github.com/lerna/lerna/tree/main/commands/publish#bump-from-package
+    - name: Publish to NPM
+      if: ${{ steps.release.outputs.releases_created }}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npx lerna publish from-package --no-push --no-private --yes
+
+    - name: Auth Cloud SDK
+      if: ${{ steps.release.outputs.releases_created }}
+      uses: google-github-actions/auth@v0
+      with:
+        workload_identity_provider: 'projects/578372381550/locations/global/workloadIdentityPools/github-actions/providers/github-provider'
+        service_account: 'github-actions@teachable-website.iam.gserviceaccount.com'
+
+    - name: Set up gcloud SDK
+      uses: google-github-actions/setup-gcloud@v0
+
+    # ###
+    # # Deploy connector to prod.
+    # ###
+    # TODO: https://github.com/google-github-actions/release-please-action/issues/429
+    # - name: Deploy connector to prod
+    #   if: ${{ steps.release.outputs.packages.connector--release_created }}
+    #   run: make build-and-deploy-prod-tag tag=${{ steps.release.outputs.packages.connector--tag_name }}
+    #   working-directory: packages/connector
+
+    # ###
+    # # Deploy documentation to prod.
+    # ###
+    # TODO: Separate out the documentation from editor front end.
+    # - name: Documentation for editor.
+    #   if: ${{ steps.release.outputs.releases_created }}
+    #   run: yarn run docs
+    #   working-directory: packages/editor
+    # - name: Documentation screenshots for editor.
+    #   if: ${{ steps.release.outputs.releases_created }}
+    #   run: yarn run screenshot:docs
+    #   working-directory: packages/editor
+    # - name: Documentation for connector.
+    #   if: ${{ steps.release.outputs.releases_created }}
+    #   run: yarn run docs
+    #   working-directory: packages/connector
+    # - name: Documentation for selective-edit.
+    #   if: ${{ steps.release.outputs.releases_created }}
+    #   run: yarn run docs
+    #   working-directory: packages/selective-edit
+
+    # TODO: Separate out the documentation from editor front end.
+    # TODO: https://github.com/google-github-actions/release-please-action/issues/429
+    # - name: Deploy editor to prod
+    #   if: ${{ steps.release.outputs.packages.editor--release_created }}
+    #   run: make build-and-deploy-prod-tag tag=${{ steps.release.outputs.packages.editor--tag_name }}
+    #   working-directory: packages/editor

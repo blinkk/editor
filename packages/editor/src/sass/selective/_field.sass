@@ -1,0 +1,253 @@
+.selective__field
+  margin: $le-space-medium 0
+
+  &:first-child
+    margin-top: 0
+
+  &:last-child
+    margin-bottom: 0
+
+  &--invalid
+    > .selective__field__header
+      color: var(--color-extreme)
+
+  &--dirty
+    box-shadow: 0 3px 5px var(--color-warning), 0 1px 2px var(--color-warning)
+
+.selective__field__help
+  font-size: $le-font-size-small
+  line-height: $le-line-height-paragraph
+  margin-bottom: $le-space-small
+
+.selective__field__errors
+  margin: $le-space-small 0
+
+.selective__field__label
+  align-items: center
+  display: flex
+  flex-flow: row
+  font-weight: var(--font-weight-bold)
+  margin-bottom: $le-space-small
+
+  &--error
+    color: var(--color-extreme)
+
+  > .selective__field__invalid
+    margin-right: $le-space-small
+
+.selective__field__actions
+  align-items: center
+  display: flex
+  flex-flow: row
+
+  .selective__action
+    +clickable
+
+    .material-icons
+      padding: $le-space-small $le-space-medium
+
+      .selective__field__header &
+        padding: $le-space-small
+
+.selective__action
+  &[disabled]
+    cursor: default
+    opacity: $le-opacity-disabled
+
+  &--hover
+    .material-icons
+      opacity: $le-opacity-faded
+
+    &:hover
+      .material-icons
+        opacity: 1
+
+=field-input
+  background: var(--color-tertiary)
+  color: var(--color-on-tertiary)
+  border: none
+  box-shadow: 0 $le-border-size-medium 0 0 var(--color-primary)
+  font-family: var(--font-family-default)
+  padding: $le-space-medium
+  width: 100%
+
+  &:focus
+    outline: none
+    box-shadow: 0 $le-border-size-xlarge 0 0 var(--color-primary-light)
+
+  &:disabled
+    opacity: .5
+
+=field-input--error
+  color: inherit
+  box-shadow: 0 $le-border-size-large 0 0 var(--color-extreme)
+
+  &:focus
+    box-shadow: 0 $le-border-size-xlarge 0 0 var(--color-extreme)
+
+=field-input--info
+  color: inherit
+  box-shadow: 0 $le-border-size-large 0 0 var(--color-info)
+
+  &:focus
+    box-shadow: 0 $le-border-size-xlarge 0 0 var(--color-info)
+
+=field-input--warning
+  color: inherit
+  box-shadow: 0 $le-border-size-large 0 0 var(--color-warning)
+
+  &:focus
+    box-shadow: 0 $le-border-size-xlarge 0 0 var(--color-warning)
+
+=field-section-heading
+  color: var(--color-primary-light)
+  font-size: $le-font-size-small
+  text-transform: uppercase
+  margin: $le-space-medium 0 $le-space-small 0
+
+=field-action-icon
+  align-items: center
+  display: flex
+  justify-content: center
+
+  span
+    align-items: center
+    display: inline-flex
+    &:before
+      -webkit-font-feature-settings: 'liga'
+      content: var(--button-icon)
+      font-family: 'Material Icons'
+      font-size: 140%
+      transform: translateX(-9px)
+      margin-right: -5px
+      padding-left: 8px
+      position: relative
+      user-select: none
+      outline: none
+
+  .selective__field__header &
+    background-position: left $le-space-xsmall top $le-space-xsmall
+    padding-left: $le-font-size-icon + $le-space-small
+
+.selective__action
+  &--add
+    --button-icon: 'add'
+
+.selective__droppable__target
+  position: relative
+
+.selective__droppable--hover
+  background: var(--color-primary-light)
+  color: var(--color-on-primary-light)
+
+  &::before
+    background: var(--color-primary-light)
+    background: linear-gradient(45deg, var(--color-primary-light) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%)
+    box-shadow: $le-shadow-small
+    content: ''
+    height: 100%
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+
+  &::after
+    color: var(--color-on-primary-light)
+    content: 'Drop file…'
+    font-size: $le-font-size-large
+    font-weight: var(--font-weight-bold)
+    left: 50%
+    position: absolute
+    top: 50%
+    transform: translate(-50%, -50%)
+
+  // Pointer events cause issues with triggering extra drag events from children nodes.
+  *
+    pointer-events: none
+
+.selective__field__input
+  input[type=text],
+  input[type=date],
+  input[type=datetime-local],
+  input[type=file],
+  input[type=number],
+  input[type=time],
+  textarea
+    +field-input
+
+  textarea
+    line-height: $le-line-height-paragraph
+
+  &--row
+    align-items: center
+    display: flex
+    flex-flow: row
+
+  &--error
+    color: var(--color-extreme)
+
+    input[type=text],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=file],
+    input[type=number],
+    input[type=time],
+    textarea
+      +field-input--error
+
+  &--warning
+    color: var(--color-warning)
+
+    input[type=text],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=file],
+    input[type=number],
+    input[type=time],
+    textarea
+      +field-input--warning
+
+  &--info
+    color: var(--color-info)
+
+    input[type=text],
+    input[type=date],
+    input[type=datetime-local],
+    input[type=file],
+    input[type=number],
+    input[type=time],
+    textarea
+      +field-input--info
+
+.selective__field__error
+  color: var(--color-extreme)
+
+@import './field/checkbox'
+@import './field/color'
+@import './field/date'
+@import './field/datetime'
+@import './field/group'
+@import './field/html'
+@import './field/image'
+@import './field/list'
+@import './field/markdown'
+@import './field/media'
+@import './field/mediaList'
+@import './field/menuList'
+@import './field/number'
+@import './field/select'
+@import './field/text'
+@import './field/textarea'
+@import './field/time'
+@import './field/unknown'
+@import './field/variant'
+
+// Generic/shared fields.
+@import './field/generic_constructor'
+@import './field/generic_partials'
+
+// Amagaki project type fields.
+// @import './field/amagaki_partials'
+
+// Grow project type fields.
+@import './field/grow_string'

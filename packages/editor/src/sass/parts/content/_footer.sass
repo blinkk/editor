@@ -1,0 +1,31 @@
+.le__part__content__footer
+  align-items: center
+  background-color: var(--color-tertiary)
+  color: var(--color-on-tertiary)
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+
+.le__part__content__logo
+  flex-grow: 1
+  margin: 0 $le-space-medium
+
+  svg
+    max-height: 28px
+    max-width: 28px
+
+.le__part__content__dev_tools
+  margin: $le-space-medium 0
+
+.le__part__content__dev_tools__icons
+  margin: 0 $le-space-medium
+
+  .material-icons
+    font-size: $le-font-size-icon-small
+
+.le__part__content__dev_tools__icon
+  border-bottom: $le-border-size-large solid transparent
+
+  &:hover,
+  &--selected
+    border-bottom: $le-border-size-large solid var(--color-on-tertiary)

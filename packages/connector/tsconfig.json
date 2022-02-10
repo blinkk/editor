@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": ["es2020", "dom", "dom.iterable"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "src/ts/",
+    "target": "es2020",
+  },
+  "declaration": true,
+  "extends": "../../node_modules/gts/tsconfig-google.json",
+  "include": [
+    "src/ts/**/*.ts"
+  ],
+  "typedocOptions": {
+    "excludeProtected": true,
+    "excludeExternals": true,
+    "entryPoints": [
+      "./src/ts/",
+    ],
+    "entryPointStrategy": "expand",
+    "exclude": [
+      "./src/ts/example/example.ts",
+      "./src/ts/**/*.test.ts",
+    ],
+    "out": "../../apps/docs/api/connector",
+  }
+}

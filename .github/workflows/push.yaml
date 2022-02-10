@@ -1,0 +1,58 @@
+name: 'Push'
+
+on: [push]
+
+jobs:
+  test-connector:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bahmutov/npm-install@v1
+    - name: Bootstrap
+      run: npx lerna bootstrap
+      working-directory: packages/connector
+    - name: "Compile dependency: selective-edit"
+      run: yarn run compile
+      working-directory: packages/selective-edit
+    - name: "Compile dependency: editor"
+      run: yarn run compile
+      working-directory: packages/editor
+    - name: Run lint
+      run: yarn run lint
+      working-directory: packages/connector
+    - name: Run tests
+      run: yarn run test:ci
+      working-directory: packages/connector
+
+  test-editor:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bahmutov/npm-install@v1
+    - name: Bootstrap
+      run: npx lerna bootstrap
+      working-directory: packages/connector
+    - name: "Compile dependency: selective-edit"
+      run: yarn run compile
+      working-directory: packages/selective-edit
+    - name: Run lint check
+      run: yarn run lint
+      working-directory: packages/editor
+    - name: Run tests
+      run: yarn run test:ci
+      working-directory: packages/editor
+
+  test-selective-edit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: bahmutov/npm-install@v1
+    - name: Bootstrap
+      run: npx lerna bootstrap
+      working-directory: packages/connector
+    - name: Run lint check
+      run: yarn run lint
+      working-directory: packages/selective-edit
+    - name: Run tests
+      run: yarn run test:ci
+      working-directory: packages/selective-edit

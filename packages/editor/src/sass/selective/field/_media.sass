@@ -1,0 +1,64 @@
+.selective__field__type__media,
+.selective__field__type__remoteMedia
+  > .selective__field__input__structure
+    > .selective__droppable__target
+      position: relative
+
+  .selective__media__path__input
+    align-items: center
+    display: flex
+    flex-flow: row
+
+    .selective__field__input
+      flex-grow: 1
+
+  .selective__media__preview
+    img,
+    video
+      height: 15vh
+      max-height: 150px
+      max-width: 100%
+      margin: $le-space-small 0
+
+  .selective__media__section__label
+    +field-section-heading
+
+  .selective__media__path
+    .selective__media__section__label
+      margin-top: 0
+
+  .selective__media__meta
+    color: var(--color-primary-light)
+    display: flex
+    flex-flow: row
+    font-size: $le-font-size-small
+
+  .selective__media__meta__item
+    margin-right: $le-space-medium
+
+    &:last-child
+      margin-right: 0
+
+  .selective__media__meta__label
+    font-weight: var(--font-weight-bold)
+
+  .selective__media__upload
+    // Do not need to display the field to be able to 'click'.
+    display: none
+
+  .selective__droppable--hover
+    &::after
+      content: 'Drop new media…'
+
+  > .selective__field__input__structure
+    > .selective__field__type__group
+      > .selective__field__header
+        .selective__field__label
+          +field-section-heading
+          font-weight: var(--font-weight-default)
+          margin: 0
+
+        .selective__field__actions
+          .selective__action
+            .material-icons
+              padding: $le-space-xsmall $le-space-small $le-space-xsmall 0

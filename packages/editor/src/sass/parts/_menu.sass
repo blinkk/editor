@@ -1,0 +1,45 @@
+.le__part__menu
+  display: flex
+  flex-flow: column
+  flex-grow: 1
+
+.le__part__menu__content
+  flex-grow: 1
+  flex-shrink: 1
+  height: 0
+  overflow-x: auto
+
+.le__part__menu__header
+  align-items: center
+  background: var(--color-primary)
+  color: var(--color-on-primary)
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+
+.le__part__menu__project
+  flex-grow: 1
+  font-weight: var(--font-weight-bold)
+  overflow: hidden
+  padding: $le-space-medium
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.le__part__menu__section
+  border-bottom: $le-border-size-medium solid var(--color-border)
+
+  &:last-child
+    border-bottom: none
+
+.le__part__menu__section__header
+  +section-heading
+  align-items: center
+  display: flex
+  flex-flow: row
+
+.le__part__menu__section__title
+  padding: $le-space-medium 0
+  font-weight: 700
+
+@import "./menu/_footer"
+@import "./menu/_site"

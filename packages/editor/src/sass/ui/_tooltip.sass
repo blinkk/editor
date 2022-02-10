@@ -1,0 +1,147 @@
+[data-tip]:not(.material-icons)
+  position: relative
+  display: inline-block
+
+  &:before
+    background: var(--color-tertiary)
+    border-radius: $le-radius-small
+    box-shadow: $le-shadow-medium
+    color: var(--color-on-tertiary)
+    content: attr(data-tip)
+    display: none
+    font-family: var(--font-family-default)
+    font-size: $le-font-size-small
+    font-weight: var(--font-weight-heavy)
+    left: 100%
+    margin-left: $le-space-small
+    padding: $le-space-small
+    pointer-events: none
+    position: absolute
+    text-align: center
+    top: 50%
+    transform: translateY(-50%)
+    white-space: nowrap
+    z-index: 500
+
+  &:hover
+    &:after,
+    &:before
+      display: block
+
+  &:after
+    border: $le-space-small solid var(--color-tertiary)
+    border-color: transparent var(--color-tertiary) transparent transparent
+    content: ""
+    display: none
+    left: 100%
+    margin-left: -$le-space-small
+    pointer-events: none
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    z-index: 510
+
+  &.selective__tooltip--wrap,
+  &.le__tooltip--wrap
+    &:before
+      max-width: $le-space-xxxlarge
+      min-width: $le-space-xxlarge
+      white-space: normal
+      width: 10vw
+
+  &.selective__tooltip--bottom,
+  &.le__tooltip--bottom,
+  &.selective__tooltip--bottom-left,
+  &.le__tooltip--bottom-left,
+  &.selective__tooltip--bottom-right,
+  &.le__tooltip--bottom-right
+    &:before
+      // Reset
+      left: initial
+      margin: initial
+      top: initial
+
+      top: 100%
+      left: 50%
+      margin-top: $le-space-small
+      transform: translateX(-50%)
+
+    &:after
+      // Reset
+      left: initial
+      margin: initial
+      top: initial
+
+      border-color: transparent transparent var(--color-tertiary) transparent
+      top: 100%
+      left: 50%
+      margin-top: -$le-space-small
+      transform: translateX(-50%)
+
+  &.selective__tooltip--bottom-left,
+  &.le__tooltip--bottom-left
+    &:before
+      transform: translateX(calc(-100% + #{$le-space-medium}))
+
+  &.selective__tooltip--bottom-right,
+  &.le__tooltip--bottom-right
+    &:before
+      transform: translateX(-$le-space-medium)
+
+  &.selective__tooltip--left,
+  &.le__tooltip--left
+    &:before
+      // Reset
+      left: initial
+      margin: initial
+
+      margin-right: $le-space-small
+      right: 100%
+
+    &:after
+      // Reset
+      left: initial
+      margin: initial
+
+      border-color: transparent transparent transparent var(--color-tertiary)
+      margin-right: -$le-space-small
+      right: 100%
+
+  &.selective__tooltip--top,
+  &.le__tooltip--top,
+  &.selective__tooltip--top-left,
+  &.le__tooltip--top-left,
+  &.selective__tooltip--top-right,
+  &.le__tooltip--top-right
+    &:before
+      // Reset
+      left: initial
+      margin: initial
+      top: initial
+
+      bottom: 100%
+      left: 50%
+      margin-bottom: $le-space-small
+      transform: translateX(-50%)
+
+    &:after
+      // Reset
+      left: initial
+      margin: initial
+      top: initial
+
+      border-color: var(--color-tertiary) transparent transparent transparent
+      bottom: 100%
+      left: 50%
+      margin-bottom: -$le-space-small
+      transform: translateX(-50%)
+
+  &.selective__tooltip--top-left,
+  &.le__tooltip--top-left
+    &:before
+      transform: translateX(calc(-100% + #{$le-space-medium}))
+
+  &.selective__tooltip--top-right,
+  &.le__tooltip--top-right
+    &:before
+      transform: translateX(-$le-space-medium)

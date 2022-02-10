@@ -1,0 +1,38 @@
+body
+  margin: 0
+  padding: 0
+
+.container
+  height: 100vh
+  display: flex
+  flex-flow: column
+
+  > div
+    flex-grow: 1
+
+.highlighted
+  outline: thick double var(--color-highlight) !important
+
+// Import the editor specific settings.
+@import '../editor'
+
+// Tool for example only usage.
+@import './exampleTool'
+
+// Custom example fields.
+@import './field/exampleField'
+
+// Example specific theme
+.le[data-text="light"][data-background="dark"]
+  --color-primary: #790E8B
+  --color-on-primary: #ffffff
+
+  --color-primary-light: #AB47BC
+  --color-on-primary-light: #ffffff
+
+.le[data-text="dark"][data-background="light"]
+  --color-primary: #C77800
+  --color-on-primary: #000000
+
+  --color-primary-light: #FFA726
+  --color-on-primary-light: #000000

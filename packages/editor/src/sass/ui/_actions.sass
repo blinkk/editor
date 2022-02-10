@@ -1,0 +1,25 @@
+.le__actions
+  align-items: center
+  display: flex
+  flex-flow: row
+  flex-wrap: nowrap
+  column-gap: $le-space-xxsmall
+  margin: 0 $le-space-medium
+
+  &--slim
+    margin: 0 $le-space-xsmall
+
+.le__actions__action
+  background: var(--color-action-background)
+  color: var(--color-on-action-background)
+  border-bottom: $le-border-size-medium solid transparent
+
+  &:hover
+    border-bottom: $le-border-size-medium solid var(--color-on-action-background)
+
+  &--disabled
+    cursor: default
+
+    // Only opacity on children so that tooltip is not applied.
+    > *
+      opacity: $le-opacity-disabled

@@ -1,0 +1,95 @@
+=button-primary
+  border-color: var(--color-primary)
+  color: var(--color-primary)
+
+=button-primary-invert
+  background-color: var(--color-on-primary)
+  border-color: var(--color-primary)
+  color: var(--color-primary)
+
+=button-tertiary
+  border-color: var(--color-on-tertiary)
+  color: var(--color-on-tertiary)
+
+=button-tertiary-invert
+  background-color: var(--color-on-tertiary)
+  border-color: var(--color-tertiary)
+  color: var(--color-tertiary)
+
+=button-extreme
+  border-color: var(--color-on-background)
+  color: var(--color-on-background)
+
+=button-extreme-invert
+  background-color: var(--color-on-background)
+  border-color: var(--color-background)
+  color: var(--color-background)
+
+=button
+  background: var(--color-background)
+  color: var(--color-on-background)
+  border-radius: $le-radius-small
+  border: none
+  cursor: pointer
+  font-family: var(--font-family-default)
+  font-size: $le-font-size
+  font-weight: var(--font-weight-heavy)
+  line-height: $le-font-size
+  padding: $le-space-small
+  transition: opacity $le-speed-xslow
+
+  &:disabled
+    cursor: default
+    opacity: $le-opacity-disabled
+
+  &:focus
+    box-shadow: $le-shadow-outline
+    outline: none
+
+  &--primary
+    +button-primary
+
+    // Invert the button styling.
+    &.le__button--on-primary
+      +button-primary-invert
+
+  &--tertiary
+    +button-tertiary
+
+    // Invert the button styling.
+    &.le__button--on-tertiary
+      +button-tertiary-invert
+
+  &--extreme
+    +button-extreme
+
+    // Invert the button styling.
+    &.le__button--on-extreme
+      +button-extreme-invert
+
+=button-outline
+  border: $le-border-size-medium solid var(--color-primary)
+
+=button-toggle
+  margin-left: 0
+  margin-right: 0
+  border-radius: 0
+  border-right: none
+
+=button-toggle-first
+  border-bottom-left-radius: $le-radius-small
+  border-top-left-radius: $le-radius-small
+
+=button-toggle-last
+  border-bottom-right-radius: $le-radius-small
+  border-right: $le-border-size-medium solid var(--color-primary)
+  border-top-right-radius: $le-radius-small
+
+.le__button
+  +button
+
+  &--outline
+    +button-outline
+
+  &--no-wrap
+    white-space: nowrap

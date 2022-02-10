@@ -1,0 +1,40 @@
+{
+  "extends": "../../node_modules/gts/",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "sort-class-members"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "node/no-extraneous-import": [
+      "error",
+      {
+        "allowModules": ["colors"]
+      }
+    ],
+    "sort-imports": ["error", {}],
+    "sort-class-members/sort-class-members": [
+      2,
+			{
+				"order": [
+					"[static-properties]",
+					"[static-methods]",
+					"[properties]",
+					"[conventional-private-properties]",
+					"constructor",
+					"[methods]",
+					"[conventional-private-methods]"
+				],
+				"accessorPairPositioning": "getThenSet"
+			}
+		]
+  }
+}

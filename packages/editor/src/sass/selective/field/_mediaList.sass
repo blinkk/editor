@@ -1,0 +1,94 @@
+.selective__field__type__mediaList,
+.selective__field__type__remoteMediaList
+  .selective__media_list
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr 1fr
+    column-gap: $le-space-medium
+    row-gap: $le-space-medium
+
+  .selective__media_list__item
+    aspect-ratio: 1
+
+    &--collapsed
+      border: $le-border-size-medium solid var(--color-border)
+      padding: $le-space-small
+      position: relative
+      transition: background $le-speed-xslow
+
+      .selective__media_list__item__preview
+        align-items: center
+        aspect-ratio: 1
+        display: flex
+        flex-flow: column
+        justify-content: center
+
+        img,
+        video
+          max-height: 100%
+          max-width: 100%
+
+        .material-icons
+          font-size: $le-font-size-icon-large
+
+      .selective__field__actions
+        opacity: 0
+        position: absolute
+        right: 0
+        top: 0
+        transform: translateX(50%) translateY(-50%)
+        transition: opacity $le-speed-xslow
+
+        .selective__action
+          .material-icons
+            padding: $le-space-small
+
+      &:focus,
+      &:hover
+        background: var(--color-tertiary)
+
+        .selective__field__actions
+          opacity: 1
+
+    &--expanded
+      aspect-ratio: auto
+      border: $le-border-size-medium solid var(--color-border)
+      grid-column-start: 1
+      grid-column-end: 5
+
+      .selective__media_list__fields__header
+        +clickable
+        background: var(--color-tertiary)
+        color: var(--color-on-tertiary)
+        font-weight: var(--font-weight-bold)
+        padding: $le-space-medium
+
+      .selective__media_list__fields
+        padding: $le-space-medium
+
+  .selective__media_list__add
+    +clickable
+    align-items: center
+    aspect-ratio: 1
+    border: $le-border-size-medium dashed var(--color-primary)
+    color: var(--color-primary)
+    display: flex
+    flex-flow: column
+    justify-content: center
+    // transition: background $le-speed-xslow, color $le-speed-xslow
+
+    &:focus,
+    &:hover
+      background: var(--color-primary-light)
+      border: $le-border-size-medium solid var(--color-primary-light)
+      color: var(--color-on-primary-light)
+
+    .material-icons
+      font-size: $le-font-size-icon-large
+
+    .selective__media_list__add__label
+      font-weight: var(--font-weight-bold)
+      margin: $le-space-small 0
+
+  .selective__droppable--hover
+    &::after
+      content: 'Drop new media…'

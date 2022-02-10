@@ -1,0 +1,38 @@
+.selective__options
+  display: grid
+  grid-template-columns: 1fr
+  column-gap: $le-space-small
+
+  &--few
+    grid-template-columns: 1fr 1fr
+
+  &--many
+    grid-template-columns: 1fr 1fr 1fr
+
+.selective__options__option
+  align-items: center
+  cursor: pointer
+  display: flex
+  flex-flow: row
+  padding: $le-space-small 0
+
+  .material-icons
+    margin-right: $le-space-small
+
+  label
+    cursor: pointer
+
+.selective__swatch
+  background-repeat: no-repeat
+  border: 1px solid transparent
+  border-color: var(--color-tertiary)
+  border-radius: $le-radius-small
+  margin-right: $le-space-small
+  height: $le-space-medium
+  width: $le-space-medium
+
+  .selective__options--swatches &
+    margin-right: 0
+
+  .selective__options__option--low_contrast &
+    border-color: var(--color-tertiary-dark)

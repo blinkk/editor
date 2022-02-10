@@ -1,0 +1,88 @@
+{
+  "name": "@blinkk/editor.dev-ui",
+  "version": "3.12.0",
+  "license": "MIT",
+  "homepage": "https://blinkk.github.com/editor.dev-ui",
+  "description": "Structured content editor with live previews.",
+  "keywords": [
+    "structured",
+    "document",
+    "ui",
+    "editor",
+    "live"
+  ],
+  "bugs": {
+    "url": "https://github.com/blinkk/editor.dev-ui/issues"
+  },
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blinkk/editor.dev-ui.git"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "compile": "npx concurrently \"yarn run ts:build\" \"yarn run sass:build\" \"yarn run webpack:prod\"",
+    "dev": "npx concurrently \"yarn run test:watch\" \"yarn run ts:watch\"",
+    "docs": "yarn run ts:docs",
+    "example": "concurrently \"yarn run webpack:serve\" \"yarn run sass:watch\"",
+    "hosted": "concurrently \"yarn run webpack:server\" \"yarn run sass:watch\" \"nodemon ./src/ts/server/server.ts\"",
+    "lint": "npx eslint src/ts/**/*.ts",
+    "lint:coverage": "npx codecov",
+    "lint:fix": "npx eslint --fix src/**/*.ts",
+    "prepare": "yarn run compile",
+    "sass:build": "sass ./src/sass/:./dist/css --style compressed --load-path=../../node_modules/",
+    "sass:watch": "sass --watch ./src/sass/:./dist/css --style compressed --load-path=../../node_modules/",
+    "prepublishOnly": "yarn run ts:build",
+    "prescreenshot:docs": "concurrently \"yarn run sass:build\" \"yarn run ts:build:screenshot\" \"yarn run webpack:example\"",
+    "screenshot:docs": "node dist/screenshot-docs.js",
+    "serve": "npx concurrently \"yarn run webpack:serve\" \"yarn run sass:watch\"",
+    "ts:build": "npx tsc",
+    "ts:build:screenshot": "npx tsc src/ts/screenshot-docs.ts --outDir dist --target es2020 --moduleResolution node --esModuleInterop true --module commonjs",
+    "ts:check": "npx gts check",
+    "ts:clean": "npx gts clean",
+    "ts:docs": "npx typedoc",
+    "ts:watch": "npx tsc --watch",
+    "test": "npx nyc ava",
+    "test:watch": "npx ava --watch",
+    "test:coverage": "npx nyc --reporter=lcov ava",
+    "test:ci": "npx concurrently \"yarn run test:coverage\" \"yarn run lint:coverage\"",
+    "webpack:example": "npx webpack --config webpack.example.js",
+    "webpack:prod": "npx webpack --config webpack.prod.js",
+    "webpack:serve": "npx webpack serve --config webpack.dev.js",
+    "webpack:server": "npx webpack --config webpack.server.js"
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "dependencies": {
+    "@blinkk/selective-edit": "^3.3.0",
+    "@toast-ui/editor": "^3.1.1",
+    "bent": "^7.3.12",
+    "codemirror": "^5.64.0",
+    "express": "^4.17.2",
+    "javascript-time-ago": "^2.3.10",
+    "js-yaml": "^4.1.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.merge": "^4.6.2",
+    "marked": "^4.0.7",
+    "minimatch": "^3.0.4",
+    "path-browserify": "^1.0.1",
+    "puppeteer": "^13.3.1",
+    "quill": "^1.3.7",
+    "sass": "^1.45.0",
+    "stackdriver-errors-js": "^0.12.0"
+  }
+}

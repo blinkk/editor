@@ -1,0 +1,163 @@
+@use "sass:math"
+
+@import "./config"
+@import "./selective-core"
+
+.selective__field
+  margin: math.div($pad, 2) 0 $pad 0
+
+  .material-icons
+    font-size: $font-size-icon
+
+  &:last-child
+    margin-bottom: 0
+
+.selective__field__label
+  display: flex
+  flex-flow: row
+  margin: math.div($pad, 2) 0
+
+  label
+    display: block
+
+.selective__field__input
+  margin: math.div($pad, 2) 0
+
+.selective__field__actions__wrapper
+  align-items: center
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+
+.selective__field__actions
+  align-items: center
+  display: flex
+  flex-flow: row
+
+.selective__field__help
+  color: $color-text-light
+  font-size: $font-size-small
+  margin: math.div($pad, 2) 0
+
+[draggable=true]
+  &.selective__sortable--hover
+    *
+      pointer-events: none
+
+  &.selective__sortable--above
+    border-top: $border-size solid $color-primary
+
+  &.selective__sortable--below
+    border-bottom: $border-size solid $color-primary
+
+.selective__field
+  input
+    +field-border
+    +field-control
+    font-family: $font-family-mono
+    transition: all $speed-fast ease-in-out
+
+    &[type=color]
+      padding: 0
+
+  textarea
+    +field-border
+    +field-control
+    font-family: $font-family-mono
+    transition: all $speed-slow ease-in-out
+
+  [contenteditable=true]
+    +field-border
+    +field-control
+
+  button
+    background: $color-field-back-alt
+    border-radius: $radius-5
+    color: $color-on-field-back-alt
+    border: 1px solid $color-back-light
+    font-family: $font-family
+    font-size: $font-size
+    padding: math.div($pad, 2) $pad
+
+    &[disabled]
+      opacity: .5
+
+    &:focus
+      outline: none
+      box-shadow: $focus-shadow-secondary
+
+    &:hover
+      box-shadow: $focus-shadow-secondary
+
+    &.selective__button--primary
+      background: $color-primary
+      border-color: $color-primary
+      color: $color-on-primary
+      font-weight: bold
+
+      &:focus
+        outline: none
+        box-shadow: $focus-shadow-primary
+
+      &:hover
+        box-shadow: $focus-shadow-primary
+
+    &.selective__button--secondary
+      background: none
+      border: none
+      color: lighten($color-on-back, 50%)
+      font-weight: bold
+
+      &.selective__button--selected
+        color: $color-on-back
+
+      &:hover
+        color: $color-on-back
+
+      &:focus
+        box-shadow: none
+
+.selective__options
+  display: grid
+  grid-template-columns: 1fr
+  column-gap: math.div($pad, 2)
+  row-gap: math.div($pad, 2)
+
+  &--few
+    grid-template-columns: 1fr 1fr
+
+  &--many
+    grid-template-columns: 1fr 1fr 1fr
+
+.selective__options__option
+  align-items: center
+  cursor: pointer
+  display: flex
+  flex-flow: row
+
+.selective__swatch
+  background-repeat: no-repeat
+  border: 1px solid $color-dark-border
+  border-radius: 50%
+  margin-right: math.div($pad, 2)
+  height: $pad
+  width: $pad
+
+  .selective__options--multi &
+    border-radius: $radius-2
+
+  .selective__options--swatches &
+    margin-right: 0
+
+  .selective__options__option--low_contrast &
+    border-color: $color-dark-border
+
+  .selective__options__option--multiple &
+    border-color: $color-light-border
+
+@import './field/_checkbox'
+@import './field/_checkboxMulti'
+@import './field/_group'
+@import './field/_list'
+@import './field/_radio'
+@import './field/_variant'

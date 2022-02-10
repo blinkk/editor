@@ -1,0 +1,5 @@
+{
+  "packages/connector": "1.6.1",
+  "packages/editor": "3.12.0",
+  "packages/selective-edit": "3.3.0"
+}

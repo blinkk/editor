@@ -1,0 +1,76 @@
+{
+  "name": "@blinkk/editor.dev",
+  "version": "1.6.1",
+  "license": "MIT",
+  "homepage": "https://blinkk.github.com/editor.dev",
+  "description": "Server for live editor.",
+  "keywords": [
+    "editor",
+    "editor.dev",
+    "cms",
+    "server"
+  ],
+  "bugs": {
+    "url": "https://github.com/blinkk/editor.dev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blinkk/editor.dev.git"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "./dist/index.js",
+  "bin": {
+    "editor-dev": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "compile": "yarn run ts:build",
+    "dev": "npx concurrently \"yarn run test:watch\" \"yarn run ts:watch\"",
+    "docs": "yarn run ts:docs",
+    "hosted": "nodemon ./src/ts/server/server.ts",
+    "lint": "npx eslint src/ts/**/*.ts",
+    "lint:coverage": "npx codecov",
+    "lint:fix": "npx eslint --fix src/**/*.ts",
+    "local": "nodemon ./src/ts/index.ts",
+    "prepare": "yarn run compile",
+    "prepublishOnly": "yarn run ts:build",
+    "ts:build": "npx tsc",
+    "ts:check": "npx gts check",
+    "ts:clean": "npx gts clean",
+    "ts:docs": "npx typedoc",
+    "ts:watch": "npx tsc --watch",
+    "test": "npx nyc ava",
+    "test:watch": "npx ava --watch",
+    "test:coverage": "npx nyc --reporter=lcov ava",
+    "test:ci": "npx concurrently \"yarn run test:coverage\" \"yarn run lint:coverage\""
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "dependencies": {
+    "@blinkk/editor.dev-ui": "^3.12.0",
+    "@blinkk/selective-edit": "^3.3.0",
+    "@google-cloud/datastore": "^6.6.2",
+    "@google-cloud/error-reporting": "^2.0.4",
+    "@octokit/core": "^3.5.1",
+    "bent": "^7.3.12",
+    "commander": "^8.3.0",
+    "cors": "^2.8.5",
+    "eslint-plugin-node": "^11.1.0",
+    "express": "^4.17.1",
+    "isomorphic-git": "^1.10.2",
+    "js-yaml": "^4.1.0"
+  }
+}

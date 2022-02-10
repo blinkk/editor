@@ -1,0 +1,70 @@
+.selective__field__type__partials
+  > .selective__field__header
+    align-items: center
+    display: flex
+    flex-flow: row-reverse
+
+    .selective__field__label
+      flex-grow: 1
+      margin: $le-space-small 0
+
+  > .selective__field__input__structure
+    > .selective__list
+      > .selective__list__item
+        &:focus-within
+          border-color: var(--color-tertiary-dark)
+
+        > .selective__list__fields__header > .selective__field__actions,
+        > .selective__field__actions
+          .selective__list__item__index
+            aspect-ratio: 1
+            border: $le-border-size-medium solid var(--color-tertiary)
+            border-radius: 50%
+            display: inline-block
+            text-align: center
+            width: $le-space-large
+
+            .selective__list__item:focus-within &
+              border-color: var(--color-tertiary-dark)
+
+        > .selective__list__fields__header > .selective__field__actions
+          .selective__list__item__index
+            border-color: var(--color-on-tertiary)
+
+            .selective__list__item--visible &
+              border-color: var(--color-secondary)
+
+            .selective__list__item:focus-within &
+              border-color: var(--color-tertiary-dark)
+
+
+        &--visible
+          > .selective__list__fields__header > .selective__field__actions,
+          > .selective__field__actions
+            .selective__list__item__index
+              border-color: var(--color-secondary)
+
+        &--hovered
+          outline: $le-border-size-large solid var(--color-secondary)
+
+        > .selective__list__fields__header > .selective__list__item__preview,
+        > .selective__list__item__preview
+          .selective__field__partials__preview
+            margin-left: $le-space-small
+            font-size: $le-font-size-small
+
+            &::after
+              content: ')'
+            &::before
+              content: '('
+
+  > .selective__field__footer
+    margin-top: $le-space-small
+
+    button
+      +button
+      +button-outline
+      +button-tertiary
+
+    .selective__action--add
+      +field-action-icon

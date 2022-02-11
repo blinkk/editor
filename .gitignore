@@ -1,3 +1,5 @@
+*.pem
+*.secret
 .DS_Store
 .npmrc
 .nyc_output

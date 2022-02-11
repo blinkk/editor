@@ -7,4 +7,5 @@ apps/docs/api
 build
 dist
 node_modules
+secrets
 yarn-error.log

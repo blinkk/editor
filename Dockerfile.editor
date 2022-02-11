@@ -42,11 +42,12 @@ RUN yarn run compile
 WORKDIR /usr/src/app/
 
 # Write the secret from the arg if it does not exist.
-RUN if [ ! -f ./secrets/client-secret.secret ]; then \
+RUN mkdir -p ./secrets
+RUN if [ ! -f ./secrets/github-client-secret.secret ]; then \
       echo "Missing secret file, using GH_CLIENT_SECRET."; \
-      printf '%s' "$GH_CLIENT_SECRET" > ./secrets/client-secret.secret; \
+      printf '%s' "$GH_CLIENT_SECRET" > ./secrets/github-client-secret.secret; \
     fi \
-    && if [ -f ./secrets/client-secret.secret ]; then echo "Secret file exists."; fi
+    && if [ -f ./secrets/github-client-secret.secret ]; then echo "Secret file exists."; fi
 
 EXPOSE 8080
 

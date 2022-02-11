@@ -7,7 +7,7 @@ import fs from 'fs';
 
 const clientId = 'Iv1.e422a5bfa1197db1';
 const clientSecret = fs
-  .readFileSync('./secrets/client-secret.secret')
+  .readFileSync('./secrets/github-client-secret.secret')
   .toString();
 
 // TODO: Shared cache between docker instances and with old auth cleanup.

@@ -15,7 +15,6 @@ RUN apt-get update \
 # Copy just the node requirement files to take advantage of
 # Docker layer caching.
 COPY ./package.json ./
-COPY ./yarn.lock ./
 
 # Copy just the node requirement files to take advantage of
 # Docker layer caching.
@@ -23,7 +22,7 @@ COPY ./website/package.json ./website/
 COPY ./website/yarn.lock ./website/
 
 # Install from the lock file.
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Install from the lock file.
 RUN cd website && yarn install --frozen-lockfile

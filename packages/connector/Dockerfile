@@ -16,10 +16,7 @@ RUN apt-get update \
 # Copy just the node requirement files to take advantage of
 # Docker layer caching.
 COPY ./package.json ./
-COPY ./yarn.lock ./
-
-# Install from the lock file.
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy files needed for compilation.
 COPY ./tsconfig.json ./

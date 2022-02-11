@@ -1,7 +1,0 @@
-.DS_Store
-.npmrc
-dist/
-docs/
-node_modules/
-yarn-error.log
-.nyc_output/

@@ -2,6 +2,6 @@
 .npmrc
 dist/
 apps/docs/api/
-node_modules/
+node_modules
 yarn-error.log
 .nyc_output/

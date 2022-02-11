@@ -5,7 +5,8 @@ tag := latest
 
 build:
 	gcloud builds submit ../../ \
-		--project=$(project)
+		--project=$(project) \
+		--config=cloudbuild.yaml
 
 build-prod:
 	gcloud builds submit ../../ \

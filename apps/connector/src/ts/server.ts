@@ -1,6 +1,6 @@
-import {GitHubApi} from '@blinkk/editor.dev/src/ts/api/githubApi';
-import {GitHubStorage} from '@blinkk/editor.dev/src/ts/storage/githubStorage';
-import {StorageManager} from '@blinkk/editor.dev/src/ts/storage/storage';
+import {GitHubApi} from '@blinkk/editor.dev/dist/api/githubApi';
+import {GitHubStorage} from '@blinkk/editor.dev/dist/storage/githubStorage';
+import {StorageManager} from '@blinkk/editor.dev/dist/storage/storage';
 import cors from 'cors';
 import express from 'express';
 

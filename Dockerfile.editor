@@ -1,0 +1,53 @@
+FROM node:16
+
+WORKDIR /usr/src/app
+
+ARG GH_CLIENT_SECRET
+
+ENV MODE=prod
+
+# Upgrade base image and cleanup.
+RUN apt-get update \
+  && apt-get -qq upgrade \
+  && apt-get -qq autoremove \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Copy files needed for compilation.
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# Copy all files.
+COPY ./ ./
+
+RUN npx lerna bootstrap
+
+# Compile the selective-edit dependency.
+WORKDIR /usr/src/app/packages/selective-edit
+RUN yarn run compile
+
+# Compile the editor dependency.
+WORKDIR /usr/src/app/packages/editor
+RUN yarn run compile
+
+# Compile the connector dependency.
+WORKDIR /usr/src/app/packages/connector
+RUN yarn run compile
+
+# Compile the connector server.
+WORKDIR /usr/src/app/apps/connector
+RUN yarn run compile
+
+WORKDIR /usr/src/app/
+
+# Write the secret from the arg if it does not exist.
+RUN if [ ! -f ./apps/connector/secrets/client-secret.secret ]; then \
+      echo "Missing secret file, using GH_CLIENT_SECRET."; \
+      printf '%s' "$GH_CLIENT_SECRET" > ./apps/connector/secrets/client-secret.secret; \
+    fi \
+    && if [ -f ./apps/connector/secrets/client-secret.secret ]; then echo "Secret file exists."; fi
+
+EXPOSE 8080
+
+CMD [ "node", "apps/connector/dist/server.js" ]

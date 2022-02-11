@@ -1,0 +1,44 @@
+{
+  "name": "connector",
+  "private": true,
+  "version": "0.0.1",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "./dist/server.js",
+  "scripts": {
+    "compile": "yarn run ts:build",
+    "hosted": "nodemon ./src/ts/server.ts",
+    "lint": "npx eslint src/ts/**/*.ts",
+    "lint:coverage": "npx codecov",
+    "lint:fix": "npx eslint --fix src/**/*.ts",
+    "prepare": "yarn run compile",
+    "prepublishOnly": "yarn run ts:build",
+    "ts:build": "npx tsc",
+    "ts:check": "npx gts check",
+    "ts:clean": "npx gts clean",
+    "ts:docs": "npx typedoc",
+    "ts:watch": "npx tsc --watch",
+    "test": "npx nyc ava",
+    "test:watch": "npx ava --watch",
+    "test:coverage": "npx nyc --reporter=lcov ava",
+    "test:ci": "npx concurrently \"yarn run test:coverage\" \"yarn run lint:coverage\""
+  },
+  "ava": {
+    "extensions": [
+      "ts"
+    ],
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
+  "dependencies": {
+    "@blinkk/editor.dev": "^1.6.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

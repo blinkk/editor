@@ -4,16 +4,16 @@ region := us-central1
 tag := latest
 
 build:
-	gcloud builds submit \
+	gcloud builds submit ../../ \
 		--project=$(project)
 
 build-prod:
-	gcloud builds submit \
+	gcloud builds submit ../../ \
 		--project=$(project) \
 		--config=cloudbuild-prod.yaml
 
 build-prod-tag:
-	gcloud builds submit \
+	gcloud builds submit ../../ \
 		--project=$(project) \
 		--substitutions _TAG=${tag} \
 		--config=cloudbuild-prod-tag.yaml

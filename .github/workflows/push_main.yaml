@@ -21,52 +21,46 @@ jobs:
         service_account: 'github-actions@grow-prod.iam.gserviceaccount.com'
     - name: Set up `gcloud` SDK
       uses: google-github-actions/setup-gcloud@v0
-    - name: "Compile dependency: selective-edit"
-      run: yarn run compile
-      working-directory: packages/selective-edit
-    - name: "Compile dependency: editor"
-      run: yarn run compile
-      working-directory: packages/editor
     - run: make build-and-deploy
-      working-directory: packages/connector
+      working-directory: apps/connector
 
   # TODO: Separate front end deployment from documentation.
-  deploy-editor:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install npm to generate docs.
-      uses: bahmutov/npm-install@v1
-    - name: "Compile dependency: selective-edit"
-      run: yarn run compile
-      working-directory: packages/selective-edit
-    - name: "Compile dependency: editor"
-      run: yarn run compile
-      working-directory: packages/editor
-    - name: "Compile dependency: connector"
-      run: yarn run compile
-      working-directory: packages/connector
-    - name: Documentation for editor.
-      run: yarn run docs
-      working-directory: packages/editor
-    - name: Documentation screenshots for editor.
-      run: yarn run screenshot:docs
-      working-directory: packages/editor
-    - name: Documentation for connector.
-      run: yarn run docs
-      working-directory: packages/connector
-    - name: Documentation for selective-edit.
-      run: yarn run docs
-      working-directory: packages/selective-edit
-    - id: auth
-      uses: google-github-actions/auth@v0
-      with:
-        workload_identity_provider: 'projects/578372381550/locations/global/workloadIdentityPools/github-actions/providers/github-provider'
-        service_account: 'github-actions@grow-prod.iam.gserviceaccount.com'
-    - name: Set up `gcloud` SDK
-      uses: google-github-actions/setup-gcloud@v0
-    - run: make build-and-deploy
-      working-directory: packages/editor
+  # deploy-editor:
+  #   permissions:
+  #     contents: 'read'
+  #     id-token: 'write'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Install npm to generate docs.
+  #     uses: bahmutov/npm-install@v1
+  #   - name: "Compile dependency: selective-edit"
+  #     run: yarn run compile
+  #     working-directory: packages/selective-edit
+  #   - name: "Compile dependency: editor"
+  #     run: yarn run compile
+  #     working-directory: packages/editor
+  #   - name: "Compile dependency: connector"
+  #     run: yarn run compile
+  #     working-directory: packages/connector
+  #   - name: Documentation for editor.
+  #     run: yarn run docs
+  #     working-directory: packages/editor
+  #   - name: Documentation screenshots for editor.
+  #     run: yarn run screenshot:docs
+  #     working-directory: packages/editor
+  #   - name: Documentation for connector.
+  #     run: yarn run docs
+  #     working-directory: packages/connector
+  #   - name: Documentation for selective-edit.
+  #     run: yarn run docs
+  #     working-directory: packages/selective-edit
+  #   - id: auth
+  #     uses: google-github-actions/auth@v0
+  #     with:
+  #       workload_identity_provider: 'projects/578372381550/locations/global/workloadIdentityPools/github-actions/providers/github-provider'
+  #       service_account: 'github-actions@grow-prod.iam.gserviceaccount.com'
+  #   - name: Set up `gcloud` SDK
+  #     uses: google-github-actions/setup-gcloud@v0
+  #   - run: make build-and-deploy
+  #     working-directory: packages/editor
